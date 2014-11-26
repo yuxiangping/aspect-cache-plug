@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/context
+    http://www.springframework.org/schema/context/spring-context-3.2.xsd
+    http://www.springframework.org/schema/beans 
+    http://www.springframework.org/schema/beans/spring-beans-3.2.xsd 
+    http://www.springframework.org/schema/aop 
+    http://www.springframework.org/schema/aop/spring-aop-3.2.xsd
+    ">
+    <context:annotation-config />
+	<aop:aspectj-autoproxy proxy-target-class="true" />
+    
+	<aop:config> 
+	    <aop:pointcut id="adviceAspectPoint" expression="execution(* com.sample..*.*(..)) and @annotation(Aspect)" /> 
+		<aop:aspect ref="adviceAspect"> 
+			<aop:around method="execute" pointcut-ref="adviceAspectPoint"  arg-names="Aspect" />
+		</aop:aspect> 
+	</aop:config>
+    
+    <bean id="adviceAspect" class="com.aspect.AdviceAspect">
+		<property name="rootKey" value="aspect.cache."/>
+		<property name="cache" ref="cache"/>
+		<property name="caches">
+		    <list>
+		        <bean class="com.aspect.config.CacheConfig">
+		            <property name="key" value="queryMethod1"/>
+		            <property name="space" value="space1"/>
+					<property name="keyExpression">
+						<value>this[1]+"."+this[2]</value>
+					</property>
+					<property name="domainExpression">
+						<value>this[0]</value>
+					</property>
+					<property name="timeout" value="60"/>
+		        </bean>
+		        <bean class="com.aspect.config.CacheConfig">
+		            <property name="key" value="queryMethod2"/>
+		            <property name="space" value="space1"/>
+					<property name="keyExpression">
+						<value>this[0]</value>
+					</property>					
+					<property name="timeout" value="60"/>
+		        </bean>
+		        <bean class="com.aspect.config.CacheConfig">
+		            <property name="key" value="space2QueryMethod1"/>
+		            <property name="space" value="space2"/>
+					<property name="keyExpression">
+						<value>this[0]+new java.util.Date()</value>
+					</property>					
+					<property name="timeout" value="60"/>
+		        </bean>
+		    </list>
+		</property>
+		<property name="clears">
+		    <list>
+		        <bean class="com.aspect.config.ClearConfig">
+		            <property name="key" value="updateMethod1"/>
+		            <property name="domainExpression">
+						<value>this[0]</value>
+					</property>
+					<property name="cachedConfigs">
+					    <list>
+					        <value>queryMethod1</value>
+					        <value>space2QueryMethod1</value>
+					    </list>
+					</property>
+		        </bean>
+		    </list>
+		</property>
+    </bean>
+</beans>

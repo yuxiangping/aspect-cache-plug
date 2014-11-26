@@ -1,0 +1,84 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.aspect.cache</groupId>
+  <artifactId>aspect-cache-plug</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <name>aspect-cache-plug</name>
+  <description>Method aspect cache plug.</description>
+  
+  <properties>
+  	<project.spring.version>3.2.2.RELEASE</project.spring.version>
+  </properties>
+  
+  <developers>
+      <developer>
+          <email>eason.xp.yu@gmail.com</email>
+          <url>https://github.com/yuxiangping/aspect-cache-plug</url>
+      </developer>
+  </developers>
+  
+  <dependencies>
+	<dependency>
+		<groupId>commons-collections</groupId>
+		<artifactId>commons-collections</artifactId>
+		<version>3.2.1</version>
+	</dependency>
+	
+	<!-- spring -->	  
+    <dependency>
+		<groupId>org.springframework</groupId>
+		<artifactId>spring-core</artifactId>
+		<version>${project.spring.version}</version>
+	</dependency>
+	<dependency>
+		<groupId>org.springframework</groupId>
+		<artifactId>spring-beans</artifactId>
+		<version>${project.spring.version}</version>
+	</dependency>
+	<dependency>
+		<groupId>org.springframework</groupId>
+		<artifactId>spring-context</artifactId>
+		<version>${project.spring.version}</version>
+	</dependency>
+	<dependency>
+		<groupId>org.springframework</groupId>
+		<artifactId>spring-context-support</artifactId>
+		<version>${project.spring.version}</version>
+	</dependency>
+	
+	<!-- mvel2  -->
+	<dependency>
+		<groupId>org.mvel</groupId>
+		<artifactId>mvel2</artifactId>
+		<version>2.1.RC1</version>
+		<type>jar</type>
+		<scope>compile</scope>
+	</dependency>
+	
+	<!-- aopalliance aop -->
+    <dependency>
+	  <groupId>aopalliance</groupId>
+	  <artifactId>aopalliance</artifactId>
+	  <version>1.0</version>
+	</dependency>
+	
+	<!-- aspectj-->
+	<dependency>
+	  <groupId>org.aspectj</groupId>
+	  <artifactId>aspectjweaver</artifactId>
+	  <version>1.7.3</version>
+	</dependency>
+	
+	<!-- log -->
+	<dependency>
+		<groupId>ch.qos.logback</groupId>
+		<artifactId>logback-classic</artifactId>
+		<version>1.1.2</version>
+	</dependency>
+	<dependency>
+		<groupId>org.slf4j</groupId>
+		<artifactId>slf4j-api</artifactId>
+		<version>1.7.7</version>
+	</dependency>
+  </dependencies>
+</project>
