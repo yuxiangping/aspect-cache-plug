@@ -37,7 +37,7 @@ public Object update(String q) {
 执行update时清除query的返回结果
 <bean class="com.aspect.config.ClearConfig">
     <property name="key" value="update"/>    
-	<property name="cachedConfigs">
+    <property name="cachedConfigs">
 	    <list>
 	        <value>query</value>
 	    </list>
